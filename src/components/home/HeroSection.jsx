@@ -1,10 +1,6 @@
-
 export default function HeroSection() {
-
   return (
     <div className="bg-white">
-      
-
       <div className="relative isolate px-6 pt-7 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -33,16 +29,17 @@ export default function HeroSection() {
               Shop with Web Cart make your shopping easy
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Upgrade your life with our premium selection of electronics and accessories. Shop now and find the perfect blend of style, functionality, and innovation.
+              Upgrade your life with our premium selection of electronics and
+              accessories. Shop now and find the perfect blend of style,
+              functionality, and innovation.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="/products"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Browse Products
               </a>
-              
             </div>
           </div>
         </div>

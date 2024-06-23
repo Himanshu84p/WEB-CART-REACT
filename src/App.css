@@ -4,3 +4,65 @@ main {
   padding: 2rem;
   text-align: center;
 }
+/* General scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+  height: 8px; /* Set the height of the scrollbar for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Make the track background transparent */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Set the thumb color with some transparency */
+  border-radius: 10px; /* Add rounded corners to the scrollbar thumb */
+  border: 2px solid transparent; /* Add a border to create spacing around the thumb */
+  background-clip: content-box; /* Clip the background to the content box */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Darker color on hover */
+}
+
+/* Firefox scrollbar styles */
+body {
+  scrollbar-width: thin; /* Set the scrollbar width to thin */
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Set thumb color and track color */
+}
+
+/* Specific element example */
+.my-custom-scrollbar {
+  width: 300px;
+  height: 200px;
+  overflow-y: scroll;
+  padding: 10px;
+  border: 1px solid #ccc;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

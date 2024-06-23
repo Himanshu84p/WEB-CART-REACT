@@ -22,6 +22,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
 
 // Define the validation schema
 const schema = yup.object().shape({
@@ -63,7 +64,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     reset,
     handleSubmit,
@@ -82,9 +83,27 @@ export default function SignUp() {
       );
       reset();
       console.log("Response", response);
-      navigate("/login")
+      toast.success("Signup Successfully!", {
+        position: "top-right",
+        autoClose: 2000, // Close the toast after 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate("/login");
     } catch (error) {
       console.log("Error in submitting the data", error);
+      toast.error(`${error.response.data.message}`, {
+        position: "top-right",
+        autoClose: 2000, // Close the toast after 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -110,7 +129,7 @@ export default function SignUp() {
             component="form"
             onSubmit={handleSubmit(createUser)}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, color: "inherit" }}
           >
             <Controller
               name="name"

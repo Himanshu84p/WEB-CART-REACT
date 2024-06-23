@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../../api/Services/product.api";
 import Rating from "./Rating";
+import { addItemToCart } from "../../store/cartSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const { id } = useParams();
   console.log("id", id);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function getProduct(id) {
       const res = await fetchOneProduct(id);
@@ -18,10 +22,23 @@ const ProductDetails = () => {
     }
     getProduct(id);
   }, []);
+  const addToCart = (product) => {
+    dispatch(addItemToCart(product._id, 1));
+    toast.success("Product added to cart!", {
+      position: "top-right",
+      autoClose: 2000, // Close the toast after 3 seconds
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    console.log("added", product, product._id);
+  };
 
   if (loading) return <div>Loading...</div>;
   return (
-    <section className="overflow-hidden shadow-2xl rounded-lg">
+    <section className="overflow-hidden shadow-2xl rounded-lg bg-white">
       <div className="mx-auto max-w-5xl px-4 py-12">
         <div className="mx-auto flex flex-wrap items-center lg:w-4/5">
           <img
@@ -51,7 +68,7 @@ const ProductDetails = () => {
               </div>
             </div>
             <p className="leading-relaxed">
-              {product.stock ? "Stocks available" : "Not available"}
+              {product.stock ? "In Stock" : "Out of Stock"}
             </p>
             <div className="flex items-center justify-between">
               <span className="title-font text-xl font-bold text-gray-900">
@@ -60,6 +77,7 @@ const ProductDetails = () => {
               <button
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                onClick={() => addToCart(product)}
               >
                 Add to Cart
               </button>

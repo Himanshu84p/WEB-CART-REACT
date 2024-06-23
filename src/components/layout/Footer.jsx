@@ -14,10 +14,10 @@ export default function Footer() {
               </div>
               <div>
                 <p className="mb-4  text-base font-medium">
-                  The Tailwind CSS Component library
+                  The Web cart community
                 </p>
                 <p className="text-sm text-gray-600">
-                  &copy; Copyright 2022. All Rights Reserved by DevUI.
+                  &copy; Copyright 2022. All Rights Reserved by WEBCART.
                 </p>
               </div>
             </div>
@@ -31,25 +31,25 @@ export default function Footer() {
                 <li className="mb-4">
                   <a
                     className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    href="#"
+                    href="/products"
                   >
-                    Features
+                    Products
                   </a>
                 </li>
                 <li className="mb-4">
                   <a
                     className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    href="#"
+                    href="/cart"
                   >
-                    Pricing
+                    Cart
                   </a>
                 </li>
                 <li className="mb-4">
                   <a
                     className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    href="#"
+                    href="/contact"
                   >
-                    Affiliate Program
+                    Contact Program
                   </a>
                 </li>
                 <li>

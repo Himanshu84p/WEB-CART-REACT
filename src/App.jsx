@@ -3,14 +3,19 @@ import "./App.css";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import { Outlet } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./store/authSlice";
+import { fetchCart } from "./store/cartSlice";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
+    if (authStatus) {
+      fetchCart(dispatch);
+    }
     const userData = localStorage.getItem("user");
     if (userData) {
       dispatch(login(userData));

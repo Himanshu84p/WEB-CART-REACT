@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/Services/user.api";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -51,7 +52,7 @@ const schema = yup.object().shape({
 });
 
 export default function SignIn() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     control,
@@ -64,17 +65,39 @@ export default function SignIn() {
   const onSubmit = async (data) => {
     console.log("Form submitted successfully", data);
     try {
-      const response = await loginUser(data)
-      const token = response.data.token
+      const response = await loginUser(data);
       console.log("Response", response);
-      const user = JSON.stringify(response.data.loggedInUser);
+      if (!response.success) {
+        toast.error(`${response.message}`, {
+          position: "top-right",
+          autoClose: 2000, // Close the toast after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate("/");
+      } else {
+        const token = response.data.token;
+        const user = JSON.stringify(response.data.loggedInUser);
 
-      dispatch(login(response.data.loggedInUser))
+        dispatch(login(user));
 
-      localStorage.setItem("user", user);
-      localStorage.setItem("token", token)
+        localStorage.setItem("user", user);
+        localStorage.setItem("token", token);
 
-      navigate("/");
+        toast.success("User Login Successfully!", {
+          position: "top-right",
+          autoClose: 2000, // Close the toast after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate("/");
+      }
     } catch (error) {
       console.log("Error in submitting the data", error);
     }

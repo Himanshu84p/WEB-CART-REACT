@@ -67,7 +67,7 @@ const ProductDetails = () => {
                 <button className="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-green-200 focus:outline-none"></button>
               </div>
             </div>
-            <p className="leading-relaxed">
+            <p className={`leading-relaxed my-4 rounded-lg ${product.stock ?  "bg-green-400 text-white p-1" : "bg-red-400 text-white p-1"}`}>
               {product.stock ? "In Stock" : "Out of Stock"}
             </p>
             <div className="flex items-center justify-between">

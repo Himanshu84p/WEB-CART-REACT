@@ -42,9 +42,9 @@ const ProductCard = ({ product }) => {
       />
       <h3 className="text-lg font-semibold text-left">{product.name}</h3>
       <p className="text-gray-900 text-xl text-left">${product.price}</p>
+      <span className="bg-red-300 rounded-md">{product.stock > 0 ? "" : "Out of Stock"}</span>
       <Rating value={product.rating} />
       <div className="flex gap-2  justify-between">
-        {console.log("product.id", product._id)}
         <button
           onClick={() => viewProduct(product._id)}
           className="bg-red-500 hover:bg-red-600 text-white text-sm font-normal py-2 px-4 rounded-full mt-4 focus:outline-none active:bg-red-900"
@@ -54,6 +54,7 @@ const ProductCard = ({ product }) => {
         <button
           onClick={() => addToCart(product)}
           className="bg-gray-500 hover:bg-gray-600 text-white text-sm font-normal py-2 px-4 rounded-full mt-4 focus:outline-none active:bg-gray-900"
+          disabled={product.stock <= 0}
         >
           Add to Cart
         </button>

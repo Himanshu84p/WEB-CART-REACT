@@ -67,7 +67,13 @@ const ProductDetails = () => {
                 <button className="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-green-200 focus:outline-none"></button>
               </div>
             </div>
-            <p className={`leading-relaxed my-4 rounded-lg ${product.stock ?  "bg-green-400 text-white p-1" : "bg-red-400 text-white p-1"}`}>
+            <p
+              className={`leading-relaxed my-4 rounded-lg ${
+                product.stock
+                  ? "bg-green-400 text-white p-1"
+                  : "bg-red-400 text-white p-1"
+              }`}
+            >
               {product.stock ? "In Stock" : "Out of Stock"}
             </p>
             <div className="flex items-center justify-between">
@@ -78,6 +84,7 @@ const ProductDetails = () => {
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 onClick={() => addToCart(product)}
+                disabled={product.stock <= 0}
               >
                 Add to Cart
               </button>

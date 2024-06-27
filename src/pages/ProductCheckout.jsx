@@ -83,7 +83,11 @@ const ProductCheckout = () => {
           </Typography>
         ) : (
           <div>
-            <img src="/public/cartFound1.jpg" alt="image" className="mx-auto w-64" />
+            <img
+              src="/public/cartFound1.jpg"
+              alt="image"
+              className="mx-auto w-64"
+            />
             <Typography
               className="font-bold tracking-tight text-gray-900 mb-8 py-4"
               variant="h4"
@@ -138,12 +142,6 @@ const ProductCheckout = () => {
                             )}
                           </Typography>
                           <div className="flex items-center mt-2">
-                            <Typography
-                              variant="body2"
-                              className="line-through text-xs text-gray-500"
-                            >
-                              ${product.originalPrice}
-                            </Typography>
                             <Typography
                               variant="body2"
                               className="text-sm font-medium text-gray-900 ml-2"

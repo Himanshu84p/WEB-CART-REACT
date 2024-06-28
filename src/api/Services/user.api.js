@@ -12,8 +12,8 @@ export const getCurrUser = async (id) => {
     console.error("Getting curr user failed:", error);
     toast.error(`${error.response.data.message}`, {
       position: "top-right",
-      autoClose: 2000, // Close the toast after 3 seconds
-      hideProgressBar: false,
+      autoClose: 500, 
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -31,8 +31,8 @@ export const loginUser = async (data) => {
     console.log("Error in sign in:", error);
     toast.error(`${error.response.data.message}`, {
       position: "top-right",
-      autoClose: 2000, // Close the toast after 3 seconds
-      hideProgressBar: false,
+      autoClose: 500, 
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,

@@ -30,8 +30,8 @@ export default function ContactPage() {
       //   await axios.post("http://localhost:8080/api/v1/contact", form);
       toast.success("Message Sent Successfully!", {
         position: "top-right",
-        autoClose: 2000, // Close the toast after 3 seconds
-        hideProgressBar: false,
+        autoClose: 500, 
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -41,8 +41,8 @@ export default function ContactPage() {
     } catch (error) {
         toast.error("Error in message sending!", {
             position: "top-right",
-            autoClose: 2000, // Close the toast after 3 seconds
-            hideProgressBar: false,
+            autoClose: 500, 
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,

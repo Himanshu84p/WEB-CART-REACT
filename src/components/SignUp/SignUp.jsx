@@ -1,29 +1,25 @@
 import * as React from "react";
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Link,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify"
-
+import { toast } from "react-toastify";
+import FormControl from "@mui/material/FormControl";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import axios from 'axios'
 // Define the validation schema
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -34,7 +30,7 @@ const schema = yup.object().shape({
     .required("Email is required"),
   phoneNumber: yup
     .string()
-    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
+    .matches(/^[6-9][0-9]{9}$/, "Phone number must be 10 digits")
     .required("Phone number is required"),
   password: yup
     .string()
@@ -85,8 +81,8 @@ export default function SignUp() {
       console.log("Response", response);
       toast.success("Signup Successfully!", {
         position: "top-right",
-        autoClose: 2000, // Close the toast after 3 seconds
-        hideProgressBar: false,
+        autoClose: 500, 
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -97,8 +93,8 @@ export default function SignUp() {
       console.log("Error in submitting the data", error);
       toast.error(`${error.response.data.message}`, {
         position: "top-right",
-        autoClose: 2000, // Close the toast after 3 seconds
-        hideProgressBar: false,
+        autoClose: 500, 
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,

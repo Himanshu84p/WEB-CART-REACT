@@ -1,73 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import ProductCard from "../components/product/ProductCard";
-// import { fetchProducts } from "../api/Services/product.api.js";
-
-// const ProductList = () => {
-//   const [products, setProducts] = useState([]);
-//   const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const [searchTerm, setSearchTerm] = useState(""); // State for search term
-
-//   useEffect(() => {
-//     const getProducts = async () => {
-//       try {
-//         const productsData = await fetchProducts();
-//         setProducts(productsData);
-//         setFilteredProducts(productsData); // Initialize filtered products with all products
-//         setLoading(false);
-//       } catch (error) {
-//         setError(error);
-//         setLoading(false);
-//       }
-//     };
-
-//     getProducts();
-//   }, []);
-
-//   // Function to handle search input change
-//   const handleSearchChange = (event) => {
-//     setSearchTerm(event.target.value);
-//     filterProducts(event.target.value);
-//   };
-
-//   // Function to filter products based on search term
-//   const filterProducts = (term) => {
-//     if (!term) {
-//       setFilteredProducts(products); // If no search term, show all products
-//     } else {
-//       const filtered = products.filter((product) =>
-//         product.name.toLowerCase().includes(term.toLowerCase())
-//       );
-//       setFilteredProducts(filtered);
-//     }
-//   };
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error.message}</div>;
-
-//   return (
-//     <div className="container mx-auto p-4">
-//       {/* Search bar */}
-//       <input
-//         type="text"
-//         placeholder="Search by product name..."
-//         value={searchTerm}
-//         onChange={handleSearchChange}
-//         className="border border-gray-300 p-2 rounded-lg mb-4"
-//       />
-
-//       {/* Product cards */}
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-//         {filteredProducts.map((product) => (
-//           <ProductCard key={product.id} product={product} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProductList;
 
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/product/ProductCard";
@@ -217,7 +147,7 @@ const ProductList = () => {
       {/* Product cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </div>

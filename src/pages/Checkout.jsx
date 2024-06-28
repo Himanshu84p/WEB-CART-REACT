@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteCart } from "../store/cartSlice";
 import { Typography } from "@mui/material";
 import { toast } from "react-toastify";
+import axiosClient from "../api/api";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -43,20 +44,35 @@ const Checkout = () => {
     }
   };
 
-  const handleConfirmOrder = () => {
-    //delete cart
-    //navigate to dahboard
-    toast.success("Order Placed Successfully!", {
-      position: "top-right",
-      autoClose: 2000, // Close the toast after 3 seconds
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-    deleteCart(dispatch);
-    navigate("/");
+  const handleConfirmOrder = async () => {
+    const cartId = cart?._id;
+    const response = await axiosClient.post("/cart/order", { cartId });
+    console.log(">>>>>>>>>>>>>>>>>>>>>>,order response", response);
+    if (response.data.success) {
+      //delete cart
+      //navigate to dahboard
+      toast.success("Order Placed Successfully!", {
+        position: "top-right",
+        autoClose: 500, 
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      deleteCart(dispatch);
+      navigate("/");
+    } else {
+      toast.error("Error in order place!", {
+        position: "top-right",
+        autoClose: 500, 
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   if (orderSubmitted) {

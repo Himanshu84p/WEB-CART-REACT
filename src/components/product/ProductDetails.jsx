@@ -23,16 +23,46 @@ const ProductDetails = () => {
     getProduct(id);
   }, []);
   const addToCart = (product) => {
-    dispatch(addItemToCart(product._id, 1));
-    toast.success("Product added to cart!", {
-      position: "top-right",
-      autoClose: 2000, // Close the toast after 3 seconds
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    let productInCart = cart?.items.find(
+      (item) => item.productId._id === product._id
+    );
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", productInCart);
+    if (productInCart) {
+      if (productInCart.quantity === product.stock) {
+        toast.warn(`${product.name} Stock exceed the limit!`, {
+          position: "top-right",
+          autoClose: 500, 
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        dispatch(addItemToCart(product._id, 1));
+        toast.success(`${product.name} added to cart!`, {
+          position: "top-right",
+          autoClose: 500, 
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } else {
+      dispatch(addItemToCart(product._id, 1));
+      toast.success(`${product.name} added to cart!`, {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
     console.log("added", product, product._id);
   };
 
@@ -82,11 +112,11 @@ const ProductDetails = () => {
               </span>
               <button
                 type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:bg-gray-400"
                 onClick={() => addToCart(product)}
                 disabled={product.stock <= 0}
               >
-                Add to Cart
+               {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
               </button>
             </div>
           </div>

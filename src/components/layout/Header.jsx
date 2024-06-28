@@ -279,8 +279,8 @@ export default function Header() {
         localStorage.removeItem("user");
         toast.success("User Logout Successfully!", {
           position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
+          autoClose: 500,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,

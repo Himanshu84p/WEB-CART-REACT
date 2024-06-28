@@ -66,3 +66,17 @@ body {
 .my-custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.cart-div {
+  position: relative;
+}
+.badge-stock {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  padding: 2px 4px;
+  font-size: 12px;
+}

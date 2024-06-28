@@ -70,8 +70,8 @@ export default function SignIn() {
       if (!response.success) {
         toast.error(`${response.message}`, {
           position: "top-right",
-          autoClose: 2000, // Close the toast after 3 seconds
-          hideProgressBar: false,
+          autoClose: 500, 
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
@@ -89,8 +89,8 @@ export default function SignIn() {
 
         toast.success("User Login Successfully!", {
           position: "top-right",
-          autoClose: 2000, // Close the toast after 3 seconds
-          hideProgressBar: false,
+          autoClose: 500,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,

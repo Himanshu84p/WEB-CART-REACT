@@ -162,7 +162,7 @@ export const deleteCart = async (dispatch) => {
   try {
     const response = await axiosClient.delete(`/cart/delete-cart`);
     console.log("response of delete cart  >>>>", response);
-    dispatch(fetchCart());
+    // dispatch(fetchCart());
   } catch (error) {
     console.log("error in deleting cart", error);
   }

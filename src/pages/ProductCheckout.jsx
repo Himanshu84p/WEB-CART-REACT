@@ -54,8 +54,8 @@ const ProductCheckout = () => {
     console.log("quantity", productId);
     toast.success("Product removed from cart!", {
       position: "top-right",
-      autoClose: 2000, // Close the toast after 3 seconds
-      hideProgressBar: false,
+      autoClose: 500,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -65,7 +65,20 @@ const ProductCheckout = () => {
   };
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    let itemExistOutOfStock = cart?.items.find((item) => item.productId.stock === 0);
+    if (itemExistOutOfStock) {
+      toast.error("Remove out of stock product to proceed!", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      navigate("/checkout");
+    }
   };
   const handleChange = (e) => {
     setQuantity(e.target.value);
@@ -113,7 +126,7 @@ const ProductCheckout = () => {
                       key={product._id}
                       className="flex items-center justify-between flex-row py-4 border-b border-gray-200"
                     >
-                      <div className="flex flex-row">
+                      <div className="flex flex-row cart-div">
                         <CardMedia
                           sx={{ height: "100px", width: "100px" }}
                           component="img"
@@ -121,6 +134,7 @@ const ProductCheckout = () => {
                           alt={product.productId.name}
                           className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
                         />
+                         {product.productId.stock === 0 && <span class="badge-stock">Out of Stock</span>}
                         <div className="p-4 ml-3">
                           <Typography variant="h6">
                             <a
@@ -160,6 +174,7 @@ const ProductCheckout = () => {
                       <div className="flex mt-2 items-center">
                         <IconButton
                           size="small"
+                          disabled={product.quantity === 1 || product.productId.stock === 0}
                           onClick={() =>
                             handleDecrementQuantity(
                               product.productId._id,
@@ -180,6 +195,8 @@ const ProductCheckout = () => {
 
                         <IconButton
                           size="small"
+                          disabled={product.quantity >= 10 || product.productId.stock === 0 || product.quantity === product.productId.stock}
+
                           onClick={() =>
                             handleIncrementQuantity(
                               product.productId._id,
